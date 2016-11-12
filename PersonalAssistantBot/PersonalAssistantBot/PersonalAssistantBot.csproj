@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="PhraseContent\CommomAnswers.cs" />
     <Compile Include="Receivers\PersonalSubjectReceiver.cs" />
     <Compile Include="Receivers\JobSubjectReceiver.cs" />
     <Compile Include="Receivers\HobbiesSubjectReceiver.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="SubjectHandlers\CommomExpressionsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="application.json">
