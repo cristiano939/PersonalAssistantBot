@@ -1,0 +1,16 @@
+﻿{
+  "identifier": "srguerraassistente",
+  "accessKey": "eHlpYzN2amFMZlY5R05zOERteG0=",
+  "messageReceivers": [
+    {
+      "type": "PlainTextMessageReceiver",
+      "mediaType": "text/plain"
+    }
+  ],
+  "settings": {
+    "UserName": "Cristiano"
+  },
+  "settingsType": "Settings",
+  "startupType": "Startup",
+  "schemaVersion": 2
+}
