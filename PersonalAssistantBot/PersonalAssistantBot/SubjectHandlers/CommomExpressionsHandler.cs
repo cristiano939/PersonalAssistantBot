@@ -14,13 +14,15 @@ namespace PersonalAssistantBot.SubjectHandlers
         Regex hiRegex;
         Regex howdRegex;
         Regex badWordsRegex;
+        Regex byeRegex;
         CommomAnswers commom;
 
         public CommomExpressionsHandler()
         {
-            hiRegex = new Regex(@"\b.*(olá|ola|oi|opa|e ai|kole|cole|koe)\b");
-            howdRegex = new Regex(@"\b.*(beleza|blz|tudo bom|bão|bao|belez|bom)\b");
+            hiRegex = new Regex(@"\b^(olá|ola|oi|opa|e ai|kole|cole|koe)\b");
+            howdRegex = new Regex(@"\b^(beleza|blz|tudo bom|bão|bao|belez|bom)\b");
             badWordsRegex = new Regex(@"\b.*(burro|caralho|porra|pau|cu|cú|bunda|buceta|vsf|foder|foda-se|fodase|imbecil|idiota)\b");
+            byeRegex = new Regex(@"\b(tchau|flw|bye|adeus|flws|ate logo|ate breve|até logo|até breve)\b");
             commom = new CommomAnswers();
         }
 
@@ -53,6 +55,10 @@ namespace PersonalAssistantBot.SubjectHandlers
             else if (howdRegex.IsMatch(message))
             {
                 return commom.getRandomHowD();
+            }
+            else if (byeRegex.IsMatch(message))
+            {
+                return commom.getRandomBye();
             }
             else
             {

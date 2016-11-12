@@ -10,6 +10,7 @@ namespace PersonalAssistantBot.PhraseContent
     {
         
         string[] Hi = {"Ola!","E ai ,beleza?","kole", "Bão ou não?","oi oi" };
+        string[] bye = { "Flws", "flws!", "Tchau tchau", "até", "até breve","até logo","espero ter ajudado, tchau!","até a próxima" };
         string[] HoWd = {"Beleza demais!","Bom sim!","Bão!","Joia sim","Sussa","Bão demás!" };
         string[] BadWords = { "Por favor, não fale palavras de baixo calão", "Sem linguagem xula por favor", "você beija sua mãe com essa boca?","Tenho poucos meses de idade, não fale assim comigo", "Mais educação, menos palavrão" };
         Random rand;
@@ -21,6 +22,10 @@ namespace PersonalAssistantBot.PhraseContent
         public string getRandomHi()
         {
             return Hi[rand.Next() % Hi.Length];
+        }
+        public string getRandomBye()
+        {
+            return bye[rand.Next() % bye.Length];
         }
 
         public string getRandomHowD()
