@@ -13,6 +13,7 @@ namespace PersonalAssistantBot.PhraseContent
         string[] bye = { "Flws", "flws!", "Tchau tchau", "até", "até breve","até logo","espero ter ajudado, tchau!","até a próxima" };
         string[] HoWd = {"Beleza demais!","Bom sim!","Bão!","Joia sim","Sussa","Bão demás!" };
         string[] BadWords = { "Por favor, não fale palavras de baixo calão", "Sem linguagem xula por favor", "você beija sua mãe com essa boca?","Tenho poucos meses de idade, não fale assim comigo", "Mais educação, menos palavrão" };
+        string[] WhoAreU = {"Eu sou o Assistente Pessoal do Sr.Guerra!\nUma IA simples criada para cuidar das coisas dele.\n Atendo comandos padrões e simples." };
         Random rand;
 
         public CommomAnswers()
@@ -31,6 +32,10 @@ namespace PersonalAssistantBot.PhraseContent
         public string getRandomHowD()
         {
             return HoWd[rand.Next() % HoWd.Length];
+        }
+        public string getRandomWhoAreU()
+        {
+            return WhoAreU[rand.Next() % WhoAreU.Length];
         }
 
         public string getRandomBadWords()

@@ -15,6 +15,7 @@ namespace PersonalAssistantBot.SubjectHandlers
         Regex howdRegex;
         Regex badWordsRegex;
         Regex byeRegex;
+        Regex whoAreURegex;
         CommomAnswers commom;
 
         public CommomExpressionsHandler()
@@ -23,6 +24,7 @@ namespace PersonalAssistantBot.SubjectHandlers
             howdRegex = new Regex(@"\b^(beleza|blz|tudo bom|bão|bao|belez|bom)\b");
             badWordsRegex = new Regex(@"\b.*(burro|caralho|porra|pau|cu|cú|bunda|buceta|vsf|foder|foda-se|fodase|imbecil|idiota)\b");
             byeRegex = new Regex(@"\b(tchau|flw|bye|adeus|flws|ate logo|ate breve|até logo|até breve)\b");
+            whoAreURegex = new Regex(@"\b(quem é voce|quem é você|que é voce|que é você|que eh voce|que eh você|que he vc|quem eh vc|q eh vc|quem he voce|o que he voce|que he voce|quem é vc)\b");
             commom = new CommomAnswers();
         }
 
@@ -59,6 +61,9 @@ namespace PersonalAssistantBot.SubjectHandlers
             else if (byeRegex.IsMatch(message))
             {
                 return commom.getRandomBye();
+            } else if (whoAreURegex.IsMatch(message))
+            {
+                return commom.getRandomWhoAreU();
             }
             else
             {
