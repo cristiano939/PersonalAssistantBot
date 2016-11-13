@@ -39,11 +39,11 @@ namespace PersonalAssistantBot
         }
 
 
-        public DocumentCollection CreateIntroCarrossel()
-        {
-            DocumentCollection carrossel = new DocumentCollection();
-            carrossel.Items = new DocumentSelect[8];
+        //public DocumentCollection CreateIntroCarrossel()
+        //{
+        //    DocumentCollection carrossel = new DocumentCollection();
+        //    carrossel.Items = new DocumentSelect[8];
 
-        }
+        //}
     }
 }

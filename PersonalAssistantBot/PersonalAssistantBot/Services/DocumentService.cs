@@ -41,11 +41,11 @@ namespace PersonalAssistantBot.Services
             return webLink;
         }
 
-        public DocumentCollection CreateCarrossel()
-        {
-            var docCollection = new DocumentCollection();
-            docCollection.Items = new DocumentSelect[];
-            docCollection.ItemType = DocumentSelect.MediaType;
-        }
+        //public DocumentCollection CreateCarrossel()
+        //{
+        //    var docCollection = new DocumentCollection();
+        //    docCollection.Items = new DocumentSelect[];
+        //    docCollection.ItemType = DocumentSelect.MediaType;
+        //}
     }
 }
