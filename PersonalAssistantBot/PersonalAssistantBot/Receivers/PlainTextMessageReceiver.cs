@@ -8,6 +8,7 @@ using Takenet.MessagingHub.Client.Sender;
 using System.Diagnostics;
 using PersonalAssistantBot.PhraseContent;
 using PersonalAssistantBot.SubjectHandlers;
+using Lime.Messaging.Contents;
 
 namespace PersonalAssistantBot
 {
@@ -35,6 +36,14 @@ namespace PersonalAssistantBot
                 await _sender.SendMessageAsync("Ainda estou aprendendo", message.From, cancellationToken);
             }
             
+        }
+
+
+        public DocumentCollection CreateIntroCarrossel()
+        {
+            DocumentCollection carrossel = new DocumentCollection();
+            carrossel.Items = new DocumentSelect[8];
+
         }
     }
 }
