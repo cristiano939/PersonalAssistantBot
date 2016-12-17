@@ -28,6 +28,28 @@ namespace PersonalAssistantBot.SubjectHandlers
             commom = new CommomAnswers();
         }
 
+        public bool IsHiMessage(string message)
+        {
+            return hiRegex.IsMatch(message);
+        }
+
+        public bool IsByeMessage(string message)
+        {
+            return byeRegex.IsMatch(message);
+        }
+        public bool IsBadWordMessage(string message)
+        {
+            return badWordsRegex.IsMatch(message);
+        }
+        public bool IsHowdMessage(string message)
+        {
+            return howdRegex.IsMatch(message);
+        }
+        public bool IsWhoAreUMessage(string message)
+        {
+            return whoAreURegex.IsMatch(message);
+        }
+
         public PlainText GetCommomAnser(string message)
         {
             string answer = CreateAnswer(message);
@@ -46,22 +68,22 @@ namespace PersonalAssistantBot.SubjectHandlers
         private string CreateAnswer(string message)
         {
             message = message.ToLower();
-            if (badWordsRegex.IsMatch(message))
+            if (IsBadWordMessage(message))
             {
                 return commom.getRandomBadWords();
             }
-            else if (hiRegex.IsMatch(message))
+            else if (IsHiMessage(message))
             {
                 return commom.getRandomHi();
             }
-            else if (howdRegex.IsMatch(message))
+            else if (IsHowdMessage(message))
             {
                 return commom.getRandomHowD();
             }
-            else if (byeRegex.IsMatch(message))
+            else if (IsByeMessage(message))
             {
                 return commom.getRandomBye();
-            } else if (whoAreURegex.IsMatch(message))
+            } else if (IsWhoAreUMessage(message))
             {
                 return commom.getRandomWhoAreU();
             }

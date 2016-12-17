@@ -1,5 +1,4 @@
 ﻿using Lime.Messaging.Contents;
-using Lime.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace PersonalAssistantBot.Models
 {
-    public class CarrosselData
+    public class CarrosselCard
     {
-        public DocumentContainer header;
-        public DocumentSelectOption[] options; 
+        public MediaLink CardMediaHeader { get; set; }
+        public string CardContent { get; set; }
+        public List<string> options { get; set; }
     }
 }

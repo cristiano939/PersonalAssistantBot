@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Models\CarrosselData.cs" />
+    <Compile Include="Models\CarrosselCard.cs" />
     <Compile Include="PhraseContent\CommomAnswers.cs" />
     <Compile Include="Receivers\PersonalSubjectReceiver.cs" />
     <Compile Include="Receivers\JobSubjectReceiver.cs" />
@@ -115,15 +115,20 @@
     <Content Include="Readme.txt" />
     <Content Include="Resources\imgs\edited\bicicleta_edited.png" />
     <Content Include="Resources\imgs\edited\games_edite.png" />
+    <Content Include="Resources\imgs\edited\hobbies_edited.jpg" />
     <Content Include="Resources\imgs\edited\musica_edited.png" />
     <Content Include="Resources\imgs\edited\series_e_filmes_edited.png" />
     <Content Include="Resources\imgs\original\bicicleta.png" />
     <Content Include="Resources\imgs\original\Forex_Robots.jpg" />
     <Content Include="Resources\imgs\edited\games.png" />
     <Content Include="Resources\imgs\original\games.png" />
+    <Content Include="Resources\imgs\original\hobbies.jpg" />
     <Content Include="Resources\imgs\original\hobbies.png" />
+    <Content Include="Resources\imgs\original\hobbies2.jpg" />
+    <Content Include="Resources\imgs\original\hobbies3.jpg" />
     <Content Include="Resources\imgs\original\musica.png" />
     <Content Include="Resources\imgs\original\series_e_filmes.png" />
+    <Content Include="Resources\imgs\original\work.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,10 +16,12 @@ namespace PersonalAssistantBot
     {
         private readonly IMessagingHubSender _sender;
         private readonly CommomExpressionsHandler commom;
+        private Settings _settings;
 
-        public PlainTextMessageReceiver(IMessagingHubSender sender)
+        public PlainTextMessageReceiver(IMessagingHubSender sender, Settings settings)
         {
             _sender = sender;
+            _settings = settings;
             commom = new CommomExpressionsHandler();
         }
 
@@ -30,20 +32,21 @@ namespace PersonalAssistantBot
             if (doc != null)
             {
                 await _sender.SendMessageAsync(doc, message.From, cancellationToken);
+                if (commom.IsHiMessage(message.Content.ToString()) || commom.IsHowdMessage(message.Content.ToString()))
+                {
+                }
+                else
+                {
+                }
             }
             else
             {
-                await _sender.SendMessageAsync("Ainda estou aprendendo", message.From, cancellationToken);
+                await _sender.SendMessageAsync("Ainda estou aprendendo sobre alguns assuntos,\nmas estou aqui para falar do Cristiano.\n\nEscolha o que deseja saber.", message.From, cancellationToken);
             }
-            
+
         }
 
 
-        //public DocumentCollection CreateIntroCarrossel()
-        //{
-        //    DocumentCollection carrossel = new DocumentCollection();
-        //    carrossel.Items = new DocumentSelect[8];
 
-        //}
     }
 }

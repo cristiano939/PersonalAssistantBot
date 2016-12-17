@@ -8,9 +8,23 @@
     }
   ],
   "settings": {
-    "UserName": "Cristiano"
+    "UserName": "Cristiano",
+    "HobbiesImages": [
+
+      "https://s29.postimg.org/7ku21uql3/hobbies_edited.jpg",
+      "https://s24.postimg.org/g5f92wlb9/hobbies2.jpg",
+      "https://s30.postimg.org/tk2rjvw69/hobbies3.jpg",
+
+    ],
+    "WorkImages": [
+     
+       "https://s28.postimg.org/khgrnwa7x/work2.jpg",
+      "https://s27.postimg.org/k8q4i3fcj/work.jpg"
+    ]
   },
   "settingsType": "Settings",
+
+
   "startupType": "Startup",
   "schemaVersion": 2
 }

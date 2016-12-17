@@ -1,9 +1,11 @@
 ﻿using Lime.Messaging.Contents;
 using Lime.Protocol;
+using PersonalAssistantBot.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PersonalAssistantBot.Services
@@ -28,6 +30,20 @@ namespace PersonalAssistantBot.Services
             return mediaLink;
         }
 
+        public DocumentSelectOption[] CreateDocumentSelectOptions(List<string> options)
+        {
+            DocumentSelectOption[] opts = new DocumentSelectOption[options.Count];
+            int i = 0;
+            foreach (var option in options)
+            {
+                opts[i].Label = new DocumentContainer { Value = new PlainText { Text = option } };
+                opts[i].Value = new DocumentContainer { Value = new PlainText { Text = option } };
+                i++;
+            }
+            return opts;
+
+        }
+
         public WebLink CreateWebLink(string title, string text, Uri url, string mediatype)
         {
             WebLink webLink = new WebLink
@@ -41,11 +57,26 @@ namespace PersonalAssistantBot.Services
             return webLink;
         }
 
-        //public DocumentCollection CreateCarrossel()
-        //{
-        //    var docCollection = new DocumentCollection();
-        //    docCollection.Items = new DocumentSelect[];
-        //    docCollection.ItemType = DocumentSelect.MediaType;
-        //}
+        public DocumentCollection CreateCarrossel(List<CarrosselCard> cards)
+        {
+            var docCollection = new DocumentCollection();
+            docCollection.Items = new DocumentSelect[cards.Count];
+            docCollection.ItemType = DocumentSelect.MediaType;
+            int i = 0;
+            foreach (var card in cards)
+            {
+                var doc = new DocumentSelect();
+                doc.Header.Value = card.CardMediaHeader;
+                doc.Options = CreateDocumentSelectOptions(card.options);
+                docCollection.Items[i] = doc;
+            }
+
+            return docCollection;
+
+        }
+
+
+
+
     }
 }
