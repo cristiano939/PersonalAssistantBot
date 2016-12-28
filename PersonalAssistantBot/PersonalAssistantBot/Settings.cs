@@ -11,5 +11,7 @@ namespace PersonalAssistantBot
         public string UserName { get; set; }
         public string[] HobbiesImages { get; set; }
         public string[] WorkImages { get; set; }
+        public string[] AgendaImages { get; set; }
+
     }
 }
