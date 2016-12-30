@@ -9,6 +9,9 @@ using System.Diagnostics;
 using PersonalAssistantBot.PhraseContent;
 using PersonalAssistantBot.SubjectHandlers;
 using Lime.Messaging.Contents;
+using PersonalAssistantBot.Models;
+using System.Collections.Generic;
+using PersonalAssistantBot.Services;
 
 namespace PersonalAssistantBot
 {
@@ -46,7 +49,19 @@ namespace PersonalAssistantBot
 
         }
 
+        public Document CreateFirstCarrossel()
+        {
+            List<CarrosselCard> carrosselData = new List<CarrosselCard>();
+            carrosselData.Add(new CarrosselCard { CardMediaHeader = new MediaLink {Text="Faço muitas coisas bacanas e tenho muito pra mostrar! Clique e conheça!",Title= "Quer conhecer meus Hobbies?", Type= new MediaType("image","jpeg"), Uri = new Uri(_settings.HobbiesImages[0]) }, CardContent = "", options = new List<string> { } });
+            carrosselData.Add(new CarrosselCard { CardMediaHeader = new MediaLink { }, CardContent = "", options = new List<string> { } });
+            carrosselData.Add(new CarrosselCard { CardMediaHeader = new MediaLink { }, CardContent = "", options = new List<string> { } });
+            carrosselData.Add(new CarrosselCard { CardMediaHeader = new MediaLink { }, CardContent = "", options = new List<string> { } });
+            carrosselData.Add(new CarrosselCard { CardMediaHeader = new MediaLink { }, CardContent = "", options = new List<string> { } });
 
+
+            DocumentService _service = new DocumentService();
+            return _service.CreateCarrossel(carrosselData);
+        }
 
     }
 }
