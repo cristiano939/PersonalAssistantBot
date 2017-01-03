@@ -18,10 +18,10 @@ namespace PersonalAssistantBot
         private readonly IMessagingHubSender _sender;
         private Settings _settings;
         private Random _random;
-        private StateManager _state;
+        private IStateManager _state;
         private DocumentService _service;
 
-        public AlineReceiver(IMessagingHubSender sender, Settings settings, StateManager state)
+        public AlineReceiver(IMessagingHubSender sender, Settings settings, IStateManager state)
         {
             _sender = sender;
             _settings = settings;
@@ -82,7 +82,7 @@ namespace PersonalAssistantBot
             List<CarrosselCard> cards = new List<CarrosselCard>();
             cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://i.ytimg.com/vi/TmQ5cSVAQ6Q/maxresdefault.jpg"), Text = "Amor! Hoje é seu aniversário, então preparei essa surpresa para você", Title = "PARABENS, MEU AMOR!", Type = new MediaType("image", "jpeg") }, CardContent = "Amor! Hoje é seu aniversário, então preparei essa surpresa para você", options = new List<string>() });
             cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://erikvanslyke.files.wordpress.com/2011/05/read-instructions-caution-sign-s-2655.gif"), Text = "Antes de prosseguir é preciso saber o que essa brincadeira faz!", Title = "Instruções!", Type = new MediaType("image", "jpeg") }, CardContent = "Antes de prosseguir é preciso saber o que essa brincadeira faz!", options = new List<string>() });
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("http://www.torontoprosupershow.com/sites/default/files//ticket.jpg"), Text = "Possui alguns vales para você usar comigo! Selecione os vales e vamos ver o que faremos nos proximos 10 minutos.", Title = "Vale tudo de bom!", Type = new MediaType("image", "jpeg") }, CardContent = "Possui alguns vales para você usar comigo! Selecione os vales e vamos ver o que faremos nos proximos 10 minutos.", options = new List<string>() });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("http://www.torontoprosupershow.com/sites/default/files//ticket.jpg"), Text = "Selecione os vales e vamos ver o que faremos nos proximos 10 minutos.", Title = "Vale tudo de bom!", Type = new MediaType("image", "jpeg") }, CardContent = "Possui alguns vales para você usar comigo! Selecione os vales e vamos ver o que faremos nos proximos 10 minutos.", options = new List<string>() });
             cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("http://dicasdesaude.blog.br/wp-content/uploads/2015/08/4-Dicas-de-Cuidados-com-o-Cora%C3%A7%C3%A3o-Que-Voc%C3%AA-Pode-e-deve-Tomar-A-Partir-de-Hoje-Interna.jpg"), Text = "Pequenas declarações de mim para você. Todas minhas mesmo.", Title = "Te amos!", Type = new MediaType("image", "jpeg") }, CardContent = "Pequenas declarações de mim para você. Todas minhas mesmo.", options = new List<string>() });
             cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("http://i.imgur.com/iGUdXht.jpg"), Text = "Pequenas confissões, de mim para você.", Title = "Segredos e Segredos", Type = new MediaType("image", "jpeg") }, CardContent = "Pequenas confissões, de mim para você.", options = new List<string>() });
             cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://image.freepik.com/icones-gratis/curva-de-ponto-de-seta-para-a-esquerda_318-10099.jpg"), Text = "Voltar para o Bot normal.", Title = "Voltar", Type = new MediaType("image", "jpeg") }, CardContent = "Voltar para o Bot normal.", options = new List<string>() });
