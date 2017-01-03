@@ -36,6 +36,7 @@ namespace PersonalAssistantBot.Services
             int i = 0;
             foreach (var option in options)
             {
+                opts[i] = new DocumentSelectOption();
                 opts[i].Label = new DocumentContainer { Value = new PlainText { Text = option } };
                 opts[i].Value = new DocumentContainer { Value = new PlainText { Text = option } };
                 i++;
@@ -66,9 +67,11 @@ namespace PersonalAssistantBot.Services
             foreach (var card in cards)
             {
                 var doc = new DocumentSelect();
+                doc.Header = new DocumentContainer();
                 doc.Header.Value = card.CardMediaHeader;
                 doc.Options = CreateDocumentSelectOptions(card.options);
                 docCollection.Items[i] = doc;
+                i++;
             }
 
             return docCollection;

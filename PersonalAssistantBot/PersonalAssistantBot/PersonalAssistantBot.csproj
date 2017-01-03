@@ -92,6 +92,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Models\CarrosselCard.cs" />
     <Compile Include="PhraseContent\CommomAnswers.cs" />
+    <Compile Include="Receivers\AlineReceiver.cs" />
     <Compile Include="Receivers\PersonalSubjectReceiver.cs" />
     <Compile Include="Receivers\JobSubjectReceiver.cs" />
     <Compile Include="Receivers\HobbiesSubjectReceiver.cs" />
