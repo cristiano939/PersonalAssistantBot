@@ -13,6 +13,9 @@ namespace PersonalAssistantBot
         public string[] WorkImages { get; set; }
         public string[] AgendaImages { get; set; }
         public string[] TicketsImages { get; set; }
+        public string[] Secrets { get; set; }
+        public string[] LoveUSays { get; set; }
+    
 
     }
 }
