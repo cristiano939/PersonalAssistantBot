@@ -25,7 +25,23 @@ namespace PersonalAssistantBot.Integrations
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly, CalendarService.Scope.Calendar };
         static string ApplicationName = "PersonalAssistant";
 
-        public string ReadAllEvents()
+        public Events ReadAllEvents()
+        {
+            var service = CreateService();
+            // Define parameters of request.
+            EventsResource.ListRequest request = service.Events.List("primary");
+            request.TimeMin = DateTime.Now;
+            request.ShowDeleted = false;
+            request.SingleEvents = true;
+            request.MaxResults = 10;
+            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
+
+            // List events.
+            Events events = request.Execute();
+            return events;
+        }
+
+        private CalendarService CreateService()
         {
             UserCredential credential;
 
@@ -42,7 +58,7 @@ namespace PersonalAssistantBot.Integrations
                     "user",
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
+
             }
 
             // Create Google Calendar API service.
@@ -51,39 +67,41 @@ namespace PersonalAssistantBot.Integrations
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
-
-            // Define parameters of request.
-            EventsResource.ListRequest request = service.Events.List("primary");
-            request.TimeMin = DateTime.Now;
-            request.ShowDeleted = false;
-            request.SingleEvents = true;
-            request.MaxResults = 10;
-            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
-            // List events.
-            Events events = request.Execute();
-            Console.WriteLine("Upcoming events:");
-            if (events.Items != null && events.Items.Count > 0)
-            {
-                foreach (var eventItem in events.Items)
-                {
-                    string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
-                    {
-                        when = eventItem.Start.Date;
-                    }
-                    Console.WriteLine("{0} ({1})", eventItem.Summary, when);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No upcoming events found.");
-            }
-            Console.Read();
-            return "";
+            return service;
         }
 
+        public Event SetEventOnCalendar()
+        {
+            var service = CreateService();
+            Event rhEvent = new Event();
 
+            rhEvent.Summary = "Testing Event";
+            rhEvent.Location = "TakeNet Prado";
+            rhEvent.Description = "Reunião com a josislaine";
+            rhEvent.Start = new EventDateTime { DateTime = new DateTime(2017, 01, 09, 19, 00, 00),TimeZone = "America/Sao_Paulo" };
+            rhEvent.End = new EventDateTime { DateTime = new DateTime(2017, 01, 09, 20, 00, 00), TimeZone = "America/Sao_Paulo" };
+
+            rhEvent.Recurrence = new List<string> { "RRULE:FREQ=DAILY;COUNT=2" };
+            rhEvent.Attendees = new List<EventAttendee> {
+                new EventAttendee {Email="cristianog@take.net",DisplayName="Keyla Margarete",Organizer=true },
+                new EventAttendee {Email="cristianog@take.net",DisplayName="Tião",Organizer= true,Self=true }
+            };
+
+            EventReminder[] reminder = new EventReminder[1];
+            reminder[0] = new EventReminder { Minutes = 10, Method = "email" };
+
+            rhEvent.Reminders = new Event.RemindersData { Overrides = reminder.ToList(),UseDefault = false };
+            try
+            {
+                rhEvent = service.Events.Insert(rhEvent, "primary").Execute();
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+            return rhEvent;
+        }
 
     }
 }

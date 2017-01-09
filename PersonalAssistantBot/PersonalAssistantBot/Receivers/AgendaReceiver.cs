@@ -48,51 +48,53 @@ namespace PersonalAssistantBot
                     await _sender.SendMessageAsync(GetHiQuickReply(), message.From, cancellationToken);
 
                 }
-                else if (message.Content.ToString().ToLower().Contains("Voltar"))
-                {
-
-                    PlainTextMessageReceiver firstReceiver = new PlainTextMessageReceiver(_sender, _settings, _directory, _state);
-                    await firstReceiver.ReceiveAsync(message, cancellationToken);
-                    _state.SetState(message.From.ToIdentity(), "default");
-                }
-                else if (message.Content.ToString().ToLower().Contains("Marcar"))
-                {
-                    var result =_calendar.ReadAllEvents();
-                }
-                else { }
             }
+            else if (message.Content.ToString().ToLower().Contains("Voltar"))
+            {
 
-
+                PlainTextMessageReceiver firstReceiver = new PlainTextMessageReceiver(_sender, _settings, _directory, _state);
+                await firstReceiver.ReceiveAsync(message, cancellationToken);
+                _state.SetState(message.From.ToIdentity(), "default");
+            }
+            else if (message.Content.ToString().ToLower().Contains("disponibilidade"))
+            {
+                var result = _calendar.ReadAllEvents();
+            }
+            else if (message.Content.ToString().ToLower().Contains("marcar"))
+            {
+                var result = _calendar.SetEventOnCalendar();
+            }
+          
             else {
                 await _sender.SendMessageAsync("Ainda estou aprendendo sobre alguns assuntos,\nmas estou aqui para falar do Cristiano.\n\nEscolha o que deseja saber.", message.From, cancellationToken);
-                await _sender.SendMessageAsync(GetAgendaQuickReply(), message.From, cancellationToken);
+        await _sender.SendMessageAsync(GetAgendaQuickReply(), message.From, cancellationToken);
             }
 
 
-        }
+}
 
-        public Document GetHiQuickReply()
-        {
-            Select agendaSelect = new Select { Text = "Acho que já nos comprimentamos antes, não? Deseja voltar para o menu inicial?", Scope = SelectScope.Immediate };
-            SelectOption[] options = new SelectOption[2];
-            options[0] = new SelectOption { Text = "Não, quero continuar aqui!", Value = "Continuar" };
-            options[1] = new SelectOption { Text = "Voltar", Value = "Voltar" };
-            
-            agendaSelect.Options = options;
-            return agendaSelect;
-        }
+public Document GetHiQuickReply()
+{
+    Select agendaSelect = new Select { Text = "Acho que já nos comprimentamos antes, não? Deseja voltar para o menu inicial?", Scope = SelectScope.Immediate };
+    SelectOption[] options = new SelectOption[2];
+    options[0] = new SelectOption { Text = "Não, quero continuar aqui!", Value = "Continuar" };
+    options[1] = new SelectOption { Text = "Voltar", Value = "Voltar" };
+
+    agendaSelect.Options = options;
+    return agendaSelect;
+}
 
 
-        public Document GetAgendaQuickReply()
-        {
-            Select agendaSelect = new Select { Text = "Que quer fazer com a agenda do Sr.Cristiano?", Scope = SelectScope.Immediate };
-            SelectOption[] options = new SelectOption[3];
-            options[0] = new SelectOption { Text = "Marcar", Value = "Marcar" };
-            options[1] = new SelectOption { Text = "Disponibilidade", Value = "Disponibilidade" };
-            options[2] = new SelectOption { Text = "Nada, quero voltar", Value = "Voltar" };
-            agendaSelect.Options = options;
-            return agendaSelect;
-        }
+public Document GetAgendaQuickReply()
+{
+    Select agendaSelect = new Select { Text = "Que quer fazer com a agenda do Sr.Cristiano?", Scope = SelectScope.Immediate };
+    SelectOption[] options = new SelectOption[3];
+    options[0] = new SelectOption { Text = "Marcar", Value = "Marcar" };
+    options[1] = new SelectOption { Text = "Disponibilidade", Value = "Disponibilidade" };
+    options[2] = new SelectOption { Text = "Nada, quero voltar", Value = "Voltar" };
+    agendaSelect.Options = options;
+    return agendaSelect;
+}
 
     }
 }

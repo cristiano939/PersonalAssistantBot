@@ -5,7 +5,7 @@
     {
       "type": "PlainTextMessageReceiver",
       "mediaType": "text/plain",
-      "state": "default"
+      "state": "agenda"
     },
     {
       "type": "AlineReceiver",
@@ -15,7 +15,7 @@
       {
       "type": "AgendaReceiver",
       "mediaType": "text/plain",
-      "state": "agenda"
+      "state": "default"
     }
   ],
   "settings": {
@@ -24,7 +24,7 @@
 
       "https://s29.postimg.org/7ku21uql3/hobbies_edited.jpg",
       "https://s24.postimg.org/g5f92wlb9/hobbies2.jpg",
-      "https://s30.postimg.org/tk2rjvw69/hobbies3.jpg",
+      "https://s30.postimg.org/tk2rjvw69/hobbies3.jpg"
 
     ],
     "WorkImages": [
