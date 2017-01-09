@@ -1,6 +1,6 @@
 ﻿{
-  "identifier": "srguerraassistente",
-  "accessKey": "eHlpYzN2amFMZlY5R05zOERteG0=",
+  "identifier": "hmgblipai",
+  "accessKey": "QXd1N1Juc25GNUx6NHBORjUyT1M=",
   "messageReceivers": [
     {
       "type": "PlainTextMessageReceiver",
@@ -11,6 +11,11 @@
       "type": "AlineReceiver",
       "mediaType": "text/plain",
       "state": "Aline"
+    },
+      {
+      "type": "AgendaReceiver",
+      "mediaType": "text/plain",
+      "state": "agenda"
     }
   ],
   "settings": {

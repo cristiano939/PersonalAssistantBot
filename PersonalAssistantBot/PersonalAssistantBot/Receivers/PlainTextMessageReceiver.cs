@@ -47,6 +47,12 @@ namespace PersonalAssistantBot
                     await _sender.SendMessageAsync(new PlainText { Text = "eu sou o Assistente Pessoal do Cristiano Guerra,😎\n\n o que deseja saber sobre ele?" }, message.From, cancellationToken);
                     await _sender.SendMessageAsync(await CreateFirstCarrossel(message, cancellationToken), message.From, cancellationToken);
                 }
+                else if (message.Content.ToString().ToLower().Contains("agenda"))
+                {
+                    
+                    await _sender.SendMessageAsync(GetAgendaQuickReply(), message.From, cancellationToken);
+                    _state.SetState(message.From.ToIdentity(),"agenda");
+                }
                 else { }
             }
             else
@@ -98,6 +104,18 @@ namespace PersonalAssistantBot
 
             return _service.CreateCarrossel(carrosselData);
         }
+
+        public Document GetAgendaQuickReply()
+        {
+            Select agendaSelect = new Select {Text="Que quer fazer com a agenda do Sr.Cristiano?" ,Scope = SelectScope.Immediate};
+            SelectOption[] options = new SelectOption[3];
+            options[0] = new SelectOption { Text = "Marcar", Value = "Marcar" };
+            options[1] = new SelectOption { Text = "Disponibilidade", Value = "Disponibilidade" };
+            options[2] = new SelectOption { Text = "Nada, quero voltar", Value = "Voltar" };
+            agendaSelect.Options = options;
+            return agendaSelect;
+        }
+
 
         private Document AlineCarrossel()
         {
