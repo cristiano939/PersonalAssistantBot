@@ -30,17 +30,31 @@ namespace PersonalAssistantBot.Services
             return mediaLink;
         }
 
-        public DocumentSelectOption[] CreateDocumentSelectOptions(List<string> options)
+        public DocumentSelectOption[] CreateDocumentSelectOptions(List<CarrosselOptions> options)
         {
             DocumentSelectOption[] opts = new DocumentSelectOption[options.Count];
             int i = 0;
             foreach (var option in options)
             {
-                opts[i] = new DocumentSelectOption();
-                opts[i].Label = new DocumentContainer { Value = new PlainText { Text = option } };
-                opts[i].Value = new DocumentContainer { Value = new PlainText { Text = option } };
-                i++;
+                if (option.label.GetType() == typeof(WebLink))
+                {
+                    opts[i] = new DocumentSelectOption();
+                    opts[i].Label = new DocumentContainer { Value = new PlainText { Text = option.label.ToString() } };
+                    opts[i].Value = new DocumentContainer { Value = new PlainText { Text = option.value.ToString() } };
+                    i++;
+                }
+                else
+                {
+                    opts[i] = new DocumentSelectOption();
+                    opts[i].Label = new DocumentContainer { Value = (WebLink)option.label };
+                    opts[i].Value = new DocumentContainer { Value = option.value.ToString() };
+                    i++;
+                }
+
+
             }
+
+
             return opts;
 
         }

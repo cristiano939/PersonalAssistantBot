@@ -8,16 +8,22 @@
       "state": "agenda"
     },
     {
+      "type": "HobbiesSubjectReceiver",
+      "mediaType": "text/plain",
+      "state": "hobbies"
+    },
+    {
       "type": "AlineReceiver",
       "mediaType": "text/plain",
       "state": "Aline"
     },
-      {
+    {
       "type": "AgendaReceiver",
       "mediaType": "text/plain",
       "state": "default"
     }
   ],
+  "settingsType": "Settings",
   "settings": {
     "UserName": "Cristiano",
     "HobbiesImages": [
@@ -58,7 +64,7 @@
       "https://s28.postimg.org/q0emmv7ot/veludo.png"
     ]
   },
-  "settingsType": "Settings",
+  
 
 
   "startupType": "Startup",

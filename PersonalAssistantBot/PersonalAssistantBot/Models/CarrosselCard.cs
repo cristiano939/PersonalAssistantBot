@@ -11,6 +11,6 @@ namespace PersonalAssistantBot.Models
     {
         public MediaLink CardMediaHeader { get; set; }
         public string CardContent { get; set; }
-        public List<string> options { get; set; }
+        public List<CarrosselOptions> options { get; set; }
     }
 }
