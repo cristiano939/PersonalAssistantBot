@@ -11,6 +11,7 @@ using PersonalAssistantBot.Services;
 using Takenet.MessagingHub.Client.Extensions.Directory;
 using PersonalAssistantBot.SubjectHandlers;
 using Lime.Messaging.Contents;
+using Takenet.MessagingHub.Client.Extensions.Broadcast;
 
 namespace PersonalAssistantBot
 {
@@ -21,16 +22,18 @@ namespace PersonalAssistantBot
         private IDirectoryExtension _directory;
         private Settings _settings;
         private IStateManager _state;
+        private readonly IBroadcastExtension _broadcaster;
 
         DocumentService _service;
         private GoogleCalendarIntegration _calendar;
 
-        public AgendaReceiver(IMessagingHubSender sender, Settings settings, IDirectoryExtension directory, IStateManager state)
+        public AgendaReceiver(IMessagingHubSender sender, Settings settings, IDirectoryExtension directory, IStateManager state, IBroadcastExtension broadcaster)
         {
             _sender = sender;
             _settings = settings;
             _directory = directory;
             _state = state;
+            _broadcaster = broadcaster;
             commom = new CommomExpressionsHandler();
             _service = new DocumentService();
             _calendar = new GoogleCalendarIntegration();
@@ -49,10 +52,10 @@ namespace PersonalAssistantBot
 
                 }
             }
-            else if (message.Content.ToString().ToLower().Contains("Voltar"))
+            else if (message.Content.ToString().ToLower().Contains("voltar"))
             {
 
-                PlainTextMessageReceiver firstReceiver = new PlainTextMessageReceiver(_sender, _settings, _directory, _state);
+                PlainTextMessageReceiver firstReceiver = new PlainTextMessageReceiver(_sender, _settings, _directory, _state, _broadcaster);
                 await firstReceiver.ReceiveAsync(message, cancellationToken);
                 _state.SetState(message.From.ToIdentity(), "default");
             }

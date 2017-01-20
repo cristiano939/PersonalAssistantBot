@@ -156,7 +156,6 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="SubjectHandlers\CommomExpressionsHandler.cs" />
-    <Compile Include="Threads\BroadCasterThread.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

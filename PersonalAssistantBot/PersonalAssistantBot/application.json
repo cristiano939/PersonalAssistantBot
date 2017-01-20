@@ -5,7 +5,7 @@
     {
       "type": "PlainTextMessageReceiver",
       "mediaType": "text/plain",
-      "state": "agenda"
+      "state": "default"
     },
     {
       "type": "HobbiesSubjectReceiver",
@@ -20,7 +20,7 @@
     {
       "type": "AgendaReceiver",
       "mediaType": "text/plain",
-      "state": "default"
+      "state": "agenda"
     }
   ],
   "settingsType": "Settings",
