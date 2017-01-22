@@ -42,6 +42,7 @@ namespace PersonalAssistantBot
             if (doc != null)
             {
                 await _sender.SendMessageAsync(doc, message.From, cancellationToken);
+                cancellationToken.WaitHandle.WaitOne(new TimeSpan(0, 0, 5));
                 if (commom.IsHiMessage(message.Content.ToString()) || commom.IsHowdMessage(message.Content.ToString()))
                 {
                     await _sender.SendMessageAsync(new PlainText { Text = "eu sou o Assistente Pessoal do Cristiano Guerra,😎\n\n o que deseja saber sobre ele?" }, message.From, cancellationToken);
@@ -64,10 +65,11 @@ namespace PersonalAssistantBot
                 }
                 else if (message.Content.ToString().Contains("Hobbies"))
                 {
-
-                    _state.SetState(message.From.ToIdentity(), "hobbies");
+                    await _sender.SendMessageAsync(CreateHobbiesCarrossel(), message.From, cancellationToken);
+                    //  _state.SetState(message.From.ToIdentity(), "hobbies");
                 }
-                else {
+                else
+                {
                     await _sender.SendMessageAsync("Ainda estou aprendendo sobre alguns assuntos,\nmas estou aqui para falar do Cristiano.\n\nEscolha o que deseja saber.", message.From, cancellationToken);
                     await _sender.SendMessageAsync(await CreateFirstCarrossel(message, cancellationToken), message.From, cancellationToken);
                 }
@@ -141,12 +143,12 @@ namespace PersonalAssistantBot
         private Document CreateHobbiesCarrossel()
         {
             List<CarrosselCard> cards = new List<CarrosselCard>();
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/blawuy4yj/hobbies.jpg"), Text = "Uma das melhores coisas do mundo:\n\nAndar de bicicleta a toda velocidade!", Title = "Bicicleta!", Type = new MediaType("image", "jpeg") }, CardContent = "Uma das melhores coisas do mundo:\n\nAndar de bicicleta a toda velocidade!", options = new List<CarrosselOptions>() { new CarrosselOptions {label= new WebLink {Text="Strava",Title="Strava",Uri=new Uri("https://www.strava.com/athletes/12908959") } } } });
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/vtizekisr/bow_and_arrow.jpg"), Text = "É praticamente uma terapia. Não pensar em nada mais do que seu alvo.", Title = "Arco e Flecha", Type = new MediaType("image", "jpeg") }, CardContent = "É praticamente uma terapia. Não pensar em nada mais do que seu alvo.", options = new List<CarrosselOptions>() { new CarrosselOptions { label="Arco e Flecha",value="Arco e Flecha"} } });
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s30.postimg.org/q1fib25g1/games.jpg"), Text = "Digitais ou não, os jogos são uma das melhores formas de interação com pessoas!", Title = "Games e BoardGames", Type = new MediaType("image", "jpeg") }, CardContent = "Digitais ou não, os jogos são uma das melhores formas de interação com pessoas!", options = new List<CarrosselOptions>() { new CarrosselOptions {value="Games",label="Games" } } });
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/swdrbanvf/programming.png"), Text = "Pequenos programas feitos por hobbie e aplicativos!", Title = "Programação", Type = new MediaType("image", "jpeg") }, CardContent = "Pequenos programas feitos por hobbies e aplicativos!", options = new List<CarrosselOptions>() { new CarrosselOptions { label = new WebLink { Title="Google Play",Text="Google Play",Uri=new Uri("https://play.google.com/store/apps/developer?id=Cristiano%20Guerra&hl=pt_BR") } } } });
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/blawuy4yj/hobbies.jpg"), Text = "Pequenas confissões, de mim para você.", Title = "Segredos e Segredos", Type = new MediaType("image", "jpeg") }, CardContent = "Pequenas confissões, de mim para você.", options = new List<CarrosselOptions>() });
-            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/blawuy4yj/hobbies.jpg"), Text = "Quer começar? ", Title = "Começar", Type = new MediaType("image", "jpeg") }, CardContent = "Quer começar?", options = new List<CarrosselOptions> { new CarrosselOptions { label = "Começar", value = "Comecar" } } });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/blawuy4yj/hobbies.jpg"), Text = "Uma das melhores coisas do mundo:\n\nAndar de bicicleta a toda velocidade!", Title = "Bicicleta!", Type = new MediaType("image", "jpeg") }, CardContent = "Uma das melhores coisas do mundo:\n\nAndar de bicicleta a toda velocidade!", options = new List<CarrosselOptions>() { new CarrosselOptions { label = new WebLink { Text = "Strava", Title = "Strava", Uri = new Uri("https://www.strava.com/athletes/12908959") } } } });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/vtizekisr/bow_and_arrow.jpg"), Text = "É praticamente uma terapia. Não pensar em nada mais do que seu alvo.", Title = "Arco e Flecha", Type = new MediaType("image", "jpeg") }, CardContent = "É praticamente uma terapia. Não pensar em nada mais do que seu alvo.", options = new List<CarrosselOptions>() { new CarrosselOptions { label = "Arco e Flecha", value = "arco e flecha" } } });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s30.postimg.org/q1fib25g1/games.jpg"), Text = "Digitais ou não, os jogos são uma das melhores formas de interação com pessoas!", Title = "Games e BoardGames", Type = new MediaType("image", "jpeg") }, CardContent = "Digitais ou não, os jogos são uma das melhores formas de interação com pessoas!", options = new List<CarrosselOptions>() { new CarrosselOptions { value = "Games", label = "games" } } });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/swdrbanvf/programming.png"), Text = "Pequenos programas feitos por hobbie e aplicativos!", Title = "Programação", Type = new MediaType("image", "jpeg") }, CardContent = "Pequenos programas feitos por hobbies e aplicativos!", options = new List<CarrosselOptions>() { new CarrosselOptions { label = new WebLink { Title = "Google Play", Text = "Google Play", Uri = new Uri("https://play.google.com/store/apps/developer?id=Cristiano%20Guerra&hl=pt_BR") } } } });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s23.postimg.org/kjqg5lzej/graal_11.jpg"), Text = "Grupo de SwordPlay que participei por muitos anos.", Title = "Graal MG", Type = new MediaType("image", "jpeg") }, CardContent = "Grupo de SwordPlay que participei por muitos anos.", options = new List<CarrosselOptions>() { new CarrosselOptions { label = "Graal MG", value = "graal mg " } } });
+            cards.Add(new CarrosselCard { CardMediaHeader = new MediaLink { Uri = new Uri("https://s30.postimg.org/7msfv4ywh/quadrinhos.jpg"), Text = "Colecionei de 2000 a 2015, mas ainda sou apaixonado!", Title = "Quadrinhos", Type = new MediaType("image", "jpeg") }, CardContent = "Colecionei de 2000 a 2015, mas ainda sou apaixonado!", options = new List<CarrosselOptions> { new CarrosselOptions { label = "Quadrinhos", value = "quadrinhos" } } });
 
             Document hobbiesCarrossel = _service.CreateCarrossel(cards);
             return hobbiesCarrossel;

@@ -55,7 +55,7 @@ namespace PersonalAssistantBot
             else if (message.Content.ToString().ToLower().Contains("voltar"))
             {
 
-                PlainTextMessageReceiver firstReceiver = new PlainTextMessageReceiver(_sender, _settings, _directory, _state, _broadcaster);
+                PlainTextMessageReceiver firstReceiver = new PlainTextMessageReceiver(_sender, _settings, _directory, _state);
                 await firstReceiver.ReceiveAsync(message, cancellationToken);
                 _state.SetState(message.From.ToIdentity(), "default");
             }
